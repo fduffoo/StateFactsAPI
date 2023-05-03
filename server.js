@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 const PORT = process.env.PORT || 3500;
 
-// supress warning
+// Supress warning
 mongoose.set('strictQuery', true);
 
 // Connect to MongoDB
@@ -49,7 +49,7 @@ app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
 
 app.use(verifyJWT);
-app.use('/employees', require('./routes/api/employees'));
+app.use('/states', require('./routes/api/states'));
 app.use('/users', require('./routes/api/users'));
 
 app.all('*', (req, res) => {
