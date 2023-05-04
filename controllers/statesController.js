@@ -9,6 +9,12 @@ const getAllStates = (req, res) => {
     res.json(data.states);
 }
 
+/*const getAllStates = async (req, res) => {
+    const states = await statesData.find();
+    if (!states) return res.status(204).json({ 'message': 'No states found.'});
+    res.json(states);
+
+}*/
 
 const createNewState = async (req, res) => {
     if (!req?.body?.stateCode || !req?.body?.funfacts) {
