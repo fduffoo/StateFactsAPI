@@ -1,10 +1,18 @@
 const State = require('../model/State');
+const data = {
+    states: require('../model/statesData.json'),
+    setStates: function (data) { this.states = data }
+}
 
-const getAllStates = async (req, res) => {
+const getAllStates = (req, res) => {
+    res.json(data.states);
+}
+
+/*const getAllStates = async (req, res) => {
     const states = await State.find();
     if (!states) return res.status(204).json({ 'message': 'No states found.' });
     res.json(states);
-}
+}*/
 
 const createNewState = async (req, res) => {
     if (!req?.body?.code || !req?.body?.funfacts) {
@@ -49,12 +57,10 @@ const deleteState = async (req, res) => {
     res.json(result);
 }
 
-const getState = async (req, res) => {
-    if (!req?.params?.id) return res.status(400).json({ 'message': 'State ID required.' });
-
-    const state = await State.findOne({ _id: req.params.id }).exec();
+const getState = (req, res) => {
+    const state = data.states.find(st => st.code === parseInt(req.params.code));
     if (!state) {
-        return res.status(204).json({ "message": `No state matches ID ${req.params.id}.` });
+        return res.status(400).json({ "message": `State code ${req.params.code} not found` });
     }
     res.json(state);
 }
