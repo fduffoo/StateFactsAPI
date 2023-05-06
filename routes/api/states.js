@@ -8,7 +8,4 @@ router.route('/')
     .put(statesController.updateState)
     .delete(statesController.deleteState);
 
-router.route('/:id')
-    .get(statesController.getState);
-
 module.exports = router;

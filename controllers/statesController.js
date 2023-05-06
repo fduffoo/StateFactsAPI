@@ -1,29 +1,19 @@
 const State = require('../model/State');
 
-const data = {
-    states: require('../model/statesData.json'),
-    setStates: function (data) { this.states = data }
-}
-
-const getAllStates = (req, res) => {
-    res.json(data.states);
-}
-
-/*const getAllStates = async (req, res) => {
-    const states = await statesData.find();
-    if (!states) return res.status(204).json({ 'message': 'No states found.'});
+const getAllStates = async (req, res) => {
+    const states = await State.find();
+    if (!states) return res.status(204).json({ 'message': 'No states found.' });
     res.json(states);
-
-}*/
+}
 
 const createNewState = async (req, res) => {
-    if (!req?.body?.stateCode || !req?.body?.funfacts) {
-        return res.status(400).json({ 'message': 'State Code and funfacts required' });
+    if (!req?.body?.code || !req?.body?.funfacts) {
+        return res.status(400).json({ 'message': 'StateCode and funfacts are required' });
     }
 
     try {
         const result = await State.create({
-            stateCode: req.body.stateCode,
+            code: req.body.code,
             funfacts: req.body.funfacts
         });
 
@@ -55,7 +45,7 @@ const deleteState = async (req, res) => {
     if (!state) {
         return res.status(204).json({ "message": `No state matches ID ${req.body.id}.` });
     }
-    const result = await state.deleteOne(); //{ _id: req.body.id }
+    const result = await state.deleteOne();
     res.json(result);
 }
 
