@@ -58,9 +58,9 @@ const deleteState = async (req, res) => {
 }
 
 const getState = (req, res) => {
-    const state = data.states.find(st => st.code === parseInt(req.params.code));
+    const state = data.states.find(st => st.code === (req.params.state));
     if (!state) {
-        return res.status(400).json({ "message": `State code ${req.params.code} not found` });
+        return res.status(400).json({ "message": `State code ${req.params.state} not found` });
     }
     res.json(state);
 }

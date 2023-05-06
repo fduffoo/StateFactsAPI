@@ -8,7 +8,7 @@ router.route('/')
     .put(statesController.updateState)
     .delete(statesController.deleteState);
 
-router.route('/state')
+router.route('/:state')
     .get(statesController.getState);
 
 module.exports = router;
