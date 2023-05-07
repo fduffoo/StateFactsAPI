@@ -66,7 +66,7 @@ const getState = (req, res) => {
 }
 
 const getFunfact = (req, res) => {
-    const state = data.states.find(st => st.code === (req.params.state));
+    const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
     if (!state) {
         return res.status(400).json({ "message": `State code ${req.params.state} not found` });
     }
@@ -77,7 +77,7 @@ const getFunfact = (req, res) => {
 }
 
 const getCapital = (req, res) => {
-    const state = data.states.find(st => st.code === (req.params.state));
+    const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
     if (!state) {
         return res.status(400).json({ "message": `State code ${req.params.state} not found` });
     }
@@ -88,7 +88,7 @@ const getCapital = (req, res) => {
 }
 
 const getNickname = (req, res) => {
-    const state = data.states.find(st => st.code === (req.params.state));
+    const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
     if (!state) {
         return res.status(400).json({ "message": `State code ${req.params.state} not found` });
     }
@@ -99,7 +99,7 @@ const getNickname = (req, res) => {
 }
 
 const getPopulation = (req, res) => {
-    const state = data.states.find(st => st.code === (req.params.state));
+    const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
     if (!state) {
         return res.status(400).json({ "message": `State code ${req.params.state} not found` });
     }
@@ -110,7 +110,7 @@ const getPopulation = (req, res) => {
 }
 
 const getAdmission = (req, res) => {
-    const state = data.states.find(st => st.code === (req.params.state));
+    const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
     if (!state) {
         return res.status(400).json({ "message": `State code ${req.params.state} not found` });
     }
