@@ -65,10 +65,70 @@ const getState = (req, res) => {
     res.json(state);
 }
 
+const getFunfact = (req, res) => {
+    const state = data.states.find(st => st.code === (req.params.state));
+    if (!state) {
+        return res.status(400).json({ "message": `State code ${req.params.state} not found` });
+    }
+    res.json({
+        "state": state.state,
+        "capital": state.funfacts
+    });
+}
+
+const getCapital = (req, res) => {
+    const state = data.states.find(st => st.code === (req.params.state));
+    if (!state) {
+        return res.status(400).json({ "message": `State code ${req.params.state} not found` });
+    }
+    res.json({
+        "state": state.state,
+        "capital": state.capital_city
+    });
+}
+
+const getNickname = (req, res) => {
+    const state = data.states.find(st => st.code === (req.params.state));
+    if (!state) {
+        return res.status(400).json({ "message": `State code ${req.params.state} not found` });
+    }
+    res.json({
+        "state": state.state,
+        "nickname": state.nickname
+    });
+}
+
+const getPopulation = (req, res) => {
+    const state = data.states.find(st => st.code === (req.params.state));
+    if (!state) {
+        return res.status(400).json({ "message": `State code ${req.params.state} not found` });
+    }
+    res.json({
+        "state": state.state,
+        "population": state.population
+    });
+}
+
+const getAdmission = (req, res) => {
+    const state = data.states.find(st => st.code === (req.params.state));
+    if (!state) {
+        return res.status(400).json({ "message": `State code ${req.params.state} not found` });
+    }
+    res.json({
+        "state": state.state,
+        "admitted": state.admission_date
+    });
+}
+
 module.exports = {
     getAllStates,
     createNewState,
     updateState,
     deleteState,
-    getState
+    getState,
+    getFunfact,
+    getCapital,
+    getNickname,
+    getPopulation,
+    getAdmission
 }
