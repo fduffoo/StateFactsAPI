@@ -8,12 +8,6 @@ const getAllStates = (req, res) => {
     res.json(data.states);
 }
 
-/*const getAllStates = async (req, res) => {
-    const states = await State.find();
-    if (!states) return res.status(204).json({ 'message': 'No states found.' });
-    res.json(states);
-}*/
-
 const createNewState = async (req, res) => {
     if (!req?.body?.code || !req?.body?.funfacts) {
         return res.status(400).json({ 'message': 'StateCode and funfacts are required' });
