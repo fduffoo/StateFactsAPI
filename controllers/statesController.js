@@ -10,7 +10,7 @@ const getAllStates = (req, res) => {
 
 const createNewState = async (req, res) => {
     if (!req?.body?.code || !req?.body?.funfacts) {
-        return res.status(400).json({ 'message': 'StateCode and funfacts are required' });
+        return res.status(400).json({ 'message': `StateCode and funfacts are required` });
     }
 
     try {
@@ -27,7 +27,7 @@ const createNewState = async (req, res) => {
 
 const updateState = async (req, res) => {
     if (!req?.body?.code) {
-        return res.status(400).json({ 'message': 'State code parameter is required.' });
+        return res.status(400).json({ 'message': `State code parameter is required.` });
     }
 
     const state = await State.findOne({ _code: req.body.code }).exec();
@@ -41,7 +41,7 @@ const updateState = async (req, res) => {
 }
 
 const deleteState = async (req, res) => {
-    if (!req?.body?.code) return res.status(400).json({ 'message': 'State ID required.' });
+    if (!req?.body?.code) return res.status(400).json({ 'message': `State ID required.` });
 
     const state = await State.findOne({ _code: req.body.code }).exec();
     if (!state) {
@@ -65,7 +65,7 @@ const getFunfact = (req, res) => {
         return res.status(404).json({ 'message': `Invalid state abbreviation parameter` });
     }
     if (!funfacts) {
-        return res.status(400).json({'message': 'State fun facts value required' });
+        return res.status(400).json({ 'message': `State fun facts value required` });
     }
     res.json({
         "state": state.state,
