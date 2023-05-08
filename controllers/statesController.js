@@ -64,9 +64,12 @@ const getFunfact = (req, res) => {
     if (!state) {
         return res.status(400).json({ "message": `Invalid state abbreviation parameter` });
     }
+    if (!funfacts) {
+        return res.status(400).json({'message': 'State fun facts value required' });
+    }
     res.json({
         "state": state.state,
-        "capital": state.funfacts
+        "funfacts": state.funfacts
     });
 }
 
