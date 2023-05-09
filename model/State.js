@@ -6,9 +6,9 @@ const stateSchema = new Schema({
         type: String,
         required: true
     },
-    funfacts: {
+    funfacts: [{
         type: String
-    }
+    }]
 });
 
 module.exports = mongoose.model('State', stateSchema);
