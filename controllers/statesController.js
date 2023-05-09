@@ -117,27 +117,6 @@ const getAdmission = (req, res) => {
     });
 }
 
-const createNewFunfact = async (req, res) => {
-    if (!req?.body?.code || !req?.body?.funfacts) {
-        return res.status(400).json({ 'message': 'StateCode and funfacts are required' });
-    }
-
-    try {
-        const result = await State.create({
-            code: req.body.code,
-            funfacts: req.body.funfacts
-        });
-
-        res.status(201).json(result);
-    } catch (err) {
-        console.error(err);
-    }
-}
-
-
-
-
-
 module.exports = {
     getAllStates,
     createNewState,
