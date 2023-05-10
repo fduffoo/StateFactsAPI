@@ -61,7 +61,6 @@ const getState = async (req, res) => {
 }
 
 const createFunfact = async (req, res) => {
-    console.log("im here");
     if (!req?.params?.state){ 
         return res.status(400).json({'message': 'Invalid state abbreviation parameter'});
     }
