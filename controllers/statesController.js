@@ -70,8 +70,8 @@ const createFunfact = async (req, res) => {
     if(!Array.isArray(req.body.funfacts)) {
         return res.status(400).json({'message': "State fun facts value must be an array"});
     }
-     const code = req.params.state.toUpperCase();
-       if(!await State.findOneAndUpdate({statecode: code},{$push: {"funfacts": req.body.funfacts}})){
+    const code = req.params.state.toUpperCase();
+    if(!await State.findOneAndUpdate({statecode: code},{$push: {"funfacts": req.body.funfacts}})){
             await State.create({ 
                 statecode: code,
                 funfacts: req.body.funfacts
