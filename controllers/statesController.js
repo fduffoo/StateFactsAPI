@@ -77,7 +77,7 @@ const createFunfact = async (req, res) => {
                 funfacts: req.body.funfacts
              });
         }
-    const result = await State.findOne({statecode: State.statecode}).exec();
+    const result = await State.findOne({statecode: State.code}).exec();
 }
 
 /*const createFunfact = async (req, res) => {
