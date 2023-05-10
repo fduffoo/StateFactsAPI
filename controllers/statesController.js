@@ -135,5 +135,5 @@ module.exports = {
     getCapital,
     getNickname,
     getPopulation,
-    getAdmission
+    getAdmission,
 }
