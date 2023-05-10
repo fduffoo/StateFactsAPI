@@ -78,6 +78,7 @@ const createFunfact = async (req, res) => {
              });
         }
     const result = await State.findOne({statecode: code}).exec();
+    res.json(result);
 }
 
 /*const createFunfact = async (req, res) => {
