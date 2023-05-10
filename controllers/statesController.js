@@ -55,7 +55,7 @@ const deleteState = async (req, res) => {
 const getState = async (req, res) => {
     const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
     if (!state) {
-      return res.status(404).json({ 'message': 'testing 1-2-3' });
+      return res.status(404).json({ 'message': 'Invalid state abbreviation parameter' });
     }
     res.json(state);
 }
