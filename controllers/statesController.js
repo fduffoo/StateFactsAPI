@@ -61,13 +61,17 @@ const getState = async (req, res) => {
 }
 
 const createFunfact = async (req, res) => {
-       if(!await State.findOneAndUpdate({statecode: code},{$push: {"funfacts": req.body.funfacts}})){
+    const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
+    if (!req.body.funfacts) { 
+        return res.status(404).json(['error need funfacts']); 
+    }
+       if(!await State.findOneAndUpdate({statecode: state.statecode},{$push: {"funfacts": req.body.funfacts}})){
             await State.create({ 
-                statecode: code,
+                statecode: state.statecode,
                 funfacts: req.body.funfacts
              });
         }
-        const result = await State.findOne({statecode: code}).exec();
+        const result = await State.findOne({statecode: state.statecode}).exec();
 }
 
 /*const createFunfact = async (req, res) => {
