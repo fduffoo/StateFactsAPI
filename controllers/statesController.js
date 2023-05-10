@@ -61,7 +61,17 @@ const getState = async (req, res) => {
 }
 
 const createFunfact = async (req, res) => {
-    const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
+       if(!await State.findOneAndUpdate({statecode: code},{$push: {"funfacts": req.body.funfacts}})){
+            await State.create({ 
+                statecode: code,
+                funfacts: req.body.funfacts
+             });
+        }
+        const result = await State.findOne({statecode: code}).exec();
+}
+
+/*const createFunfact = async (req, res) => {
+    const state = data.states.findOneAndUpdate(st => st.code === (req.params.state.toUpperCase()));
     if (!state) {
         return res.status(404).json({ 'message': 'Invalid state abbreviation parameter' });
     }
@@ -76,7 +86,7 @@ const createFunfact = async (req, res) => {
     }
     const result = await State.findOneAndUpdate(conditions, update, {upsert: true});
     res.json(result);
-}
+}*/
 
 const getCapital = (req, res) => {
     const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
@@ -121,8 +131,6 @@ const getAdmission = (req, res) => {
         "admitted": state.admission_date
     });
 }
-
-// const getFunfact
 
 module.exports = {
     getAllStates,
