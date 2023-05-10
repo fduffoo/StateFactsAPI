@@ -110,7 +110,7 @@ const getPopulation = (req, res) => {
     }
     res.json({
         "state": state.state,
-        "population": state.population
+        "population": state.population.toLocaleString()
     });
 }
 
