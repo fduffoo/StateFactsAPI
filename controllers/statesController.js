@@ -81,24 +81,6 @@ const createFunfact = async (req, res) => {
     res.status(201).json(result);
 }
 
-/*const createFunfact = async (req, res) => {
-    const state = data.states.findOneAndUpdate(st => st.code === (req.params.state.toUpperCase()));
-    if (!state) {
-        return res.status(404).json({ 'message': 'Invalid state abbreviation parameter' });
-    }
-    if (!req.body.funfacts) {
-        return res.status(400).json({ 'message': 'State fun facts value required' });
-    }
-    var conditions = {
-      code: req.params.state.toUpperCase(),
-    };
-    var update = {
-      funfacts: req.body.funfacts
-    }
-    const result = await State.findOneAndUpdate(conditions, update, {upsert: true});
-    res.json(result);
-}*/
-
 const getCapital = (req, res) => {
     const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
     if (!state) {
