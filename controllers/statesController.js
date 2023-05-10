@@ -67,7 +67,7 @@ const createFunfact = (req, res) => {
     if (!state) {
         return res.status(404).json({ 'message': 'Invalid state abbreviation parameter' });
     }
-    if (!req.params.funfacts) {
+    if (!req.body.funfacts) {
         return res.status(400).json({ 'message': 'State fun facts value required' });
     }
     res.json({
