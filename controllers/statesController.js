@@ -73,7 +73,7 @@ const createFunfact = async (req, res) => {
      const code = req.params.state.toUpperCase();
        if(!await State.findOneAndUpdate({statecode: code},{$push: {"funfacts": req.body.funfacts}})){
             await State.create({ 
-                statecode: State.code,
+                statecode: code,
                 funfacts: req.body.funfacts
              });
         }
