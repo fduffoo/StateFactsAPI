@@ -57,7 +57,8 @@ const getState = (req, res) => {
     const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
     console.log('State: ', state)
     if (!state) {
-        return res.status(404).json({'message':'Invalid state abbreviation parameter'});
+      //return res.status(404).json({'message':'Invalid state abbreviation parameter'});
+        return res.status(404).json({'message': 'Invalid state abbreviation parameter'});
     }
     res.json(state);
 }
