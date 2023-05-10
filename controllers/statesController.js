@@ -77,8 +77,8 @@ const createFunfact = async (req, res) => {
     var update = {
       funfacts: req.body.funfacts
     }
-    const res = await State.findOneAndUpdate(conditions, update, {upsert: true});
-    res
+    const result = await State.findOneAndUpdate(conditions, update, {upsert: true});
+    res.json(result);
 }
 
 const getCapital = (req, res) => {
