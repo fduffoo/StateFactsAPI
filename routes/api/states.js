@@ -26,4 +26,7 @@ router.route('/:state/population')
 router.route('/:state/admission')
     .get(statesController.getAdmission);
 
+router.route('/:state/funfact')
+    .post(statesController.createFunfact);
+
 module.exports = router;
