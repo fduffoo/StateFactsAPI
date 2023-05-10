@@ -57,7 +57,7 @@ const getState = (req, res) => {
     const state = data.states.find(st => st.code === (req.params.state.toUpperCase()));
     console.log('State: ', state)
     if (!state) {
-      return res.status(404).json({'message':'Invalid state abbreviation parameter'});
+      return res.status(404).json({ 'message': 'Invalid state abbreviation parameter' });
     }
     res.json(state);
 }
@@ -67,7 +67,7 @@ const createFunfact = (req, res) => {
     if (!state) {
         return res.status(404).json({ 'message': 'Invalid state abbreviation parameter' });
     }
-    if (!funfacts) {
+    if (!req.params.funfacts) {
         return res.status(400).json({ 'message': 'State fun facts value required' });
     }
     res.json({
