@@ -1,3 +1,4 @@
+const { id } = require('date-fns/locale');
 const State = require('../model/State');
 const data = {
     states: require('../model/statesData.json'),
@@ -70,12 +71,14 @@ const createFunfact = async (req, res) => {
     if (!req.body.funfacts) {
         return res.status(400).json({ 'message': 'State fun facts value required' });
     }
-    state.funfacts.push(...req.body.funfacts)
-    await state.save();
-    res.json({
-        "state": state.state,
-        "funfacts": state.funfacts
-    });
+    var conditions = {
+      code: req.params.state.toUpperCase(),
+    };
+    var update = {
+      funfacts: req.body.funfacts
+    }
+    const res = await State.findOneAndUpdate(conditions, update, {upsert: true});
+    res
 }
 
 const getCapital = (req, res) => {
