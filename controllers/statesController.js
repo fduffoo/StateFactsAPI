@@ -71,13 +71,13 @@ const createFunfact = async (req, res) => {
         return res.status(400).json({'message': "State fun facts value must be an array"});
     }
      const code = req.params.state.toUpperCase();
-       if(!await State.findOneAndUpdate({statecode: state.statecode},{$push: {"funfacts": req.body.funfacts}})){
+       if(!await State.findOneAndUpdate({statecode: State.statecode},{$push: {"funfacts": req.body.funfacts}})){
             await State.create({ 
                 statecode: state.statecode,
                 funfacts: req.body.funfacts
              });
         }
-    const result = await State.findOne({statecode: state.statecode}).exec();
+    const result = await State.findOne({statecode: State.statecode}).exec();
 }
 
 /*const createFunfact = async (req, res) => {
