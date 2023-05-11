@@ -126,7 +126,7 @@ const getAdmission = (req, res) => {
 }
 
 const deleteFunfact = async (req, res) => {
-    const state = await data.states.findOneAndUpdate(st => st.code === (req.params.state.toUpperCase()));
+    const state = await data.states.find(st => st.code === (req.params.state.toUpperCase()));
     if (!state) {
         return res.status(404).json({ 'message': 'Invalid state abbreviation parameter' });
     }
