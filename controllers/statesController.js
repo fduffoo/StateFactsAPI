@@ -139,7 +139,8 @@ const deleteFunfact = async (req, res) => {
         const toEdit = state.funfacts;
         toEdit.splice(req.body.index - 1, 1);
         state.funfacts = toEdit;
-        state.save();
+        const response = state.save()
+        res.json(response);
 }
 
 module.exports = {
