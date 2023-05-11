@@ -128,7 +128,7 @@ const getAdmission = (req, res) => {
 const deleteFunfact = async (req, res) => {
     const state = await State.findOne({ code: req.params.state });
     if(!req.body.index) {
-        return res.status(404).json({ 'message': 'State fun fact index value required'});
+        return res.status(400).json({ 'message': 'State fun fact index value required'});
     }
     if (!state) {
         return res.status(404).json({ 'message': 'Invalid state abbreviation parameter' });
