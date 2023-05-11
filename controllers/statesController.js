@@ -131,7 +131,7 @@ const deleteFunfact = async (req, res) => {
         return res.status(404).json({ 'message': 'Invalid state abbreviation parameter' });
     }
         else if (!state.funfacts.length) {
-            res.json({ 'message': 'No Fun Facts found for ' + jsonState.state })
+            res.json({ 'message': 'No Fun Facts found for ' + state.state })
         }
         else if (req.body.index <= 0 || req.body.index > state.funfacts.length) {
             res.json({ 'message': 'No Fun Fact found at that index for ' + jsonState.state })
@@ -141,6 +141,7 @@ const deleteFunfact = async (req, res) => {
         state.funfacts = toEdit;
         state.save();
 }
+
 module.exports = {
     getAllStates,
     createNewState,
