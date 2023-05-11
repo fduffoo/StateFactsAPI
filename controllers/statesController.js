@@ -126,12 +126,12 @@ const getAdmission = (req, res) => {
 }
 
 const deleteFunfact = async (req, res) => {
-    const state = await data.states.find(st => st.code === (req.params.state.toUpperCase()));
+    const state = await data.states.findOne(st => st.code === (req.params.state.toUpperCase()));
     if (!state) {
         return res.status(404).json({ 'message': 'Invalid state abbreviation parameter' });
     }
         else if (!state.funfacts.length) {
-            res.json({ 'message': 'No Fun Facts found for ' + state.state })
+            res.json({ 'message': 'No Fun Facts found for ' + jsonState.state })
         }
         else if (req.body.index <= 0 || req.body.index > state.funfacts.length) {
             res.json({ 'message': 'No Fun Fact found at that index for ' + jsonState.state })
