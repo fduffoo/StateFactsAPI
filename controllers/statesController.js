@@ -1,13 +1,14 @@
+const State = require('../model/State');
+const statesJSONData = require('../model/statesData.json');
+
+/*
 const { id } = require('date-fns/locale');
 const State = require('../model/State');
 const data = {
     states: require('../model/statesData.json'),
     setStates: function (data) { this.states = data }
-}
-/*
-const State = require('../model/State');
-const statesJSONData = require('../model/statesData.json');
-*/
+}*/
+
 
 const getAllStates = async (req, res) => {
     const { contig } = req?.query // default is false 
