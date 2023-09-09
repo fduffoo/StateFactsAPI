@@ -92,7 +92,6 @@ const updateStateFact = async (req, res) => {
     savedState.funfacts[index] = funfact;
     // Save state in MongoDB
     const result = await savedState.save();
-    // Send response
     res.json(result)
 }
 
