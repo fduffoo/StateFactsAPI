@@ -3,28 +3,35 @@ const router = express.Router();
 const statesController = require('../../controllers/statesController');
 const verifyState = require('../../middleware/verifyState');
 
+// Route for getting all states with optional query parameters
 router.route('/')
-    .get(statesController.getAllStates) // returns html (if accepted) or text response with directions
+    .get(statesController.getAllStates); // Retrieves a list of all states
 
+// Route for handling state-specific operations
 router.route('/:state')
-    .get(verifyState(), statesController.getOneState) // retrieve all info about specified state
+    .get(verifyState(), statesController.getOneState); // Retrieves detailed information about the specified state
 
+// Routes for managing fun facts about a specific state
 router.route('/:state/funfact')
-    .get(verifyState(), statesController.getRandomFact) // returns 1 random fun fact about the specified state 
-    .post(verifyState(), statesController.addNewStateFacts) // post 1 or more new state facts 
-    .patch(verifyState(), statesController.updateStateFact) // update existing fun fact at index
-    .delete(verifyState(), statesController.deleteStateFact) // delete fun fact at index 
+    .get(verifyState(), statesController.getRandomFact)  // Retrieves a random fun fact about the specified state
+    .post(verifyState(), statesController.addNewStateFacts)  // Adds new fun facts for the specified state
+    .patch(verifyState(), statesController.updateStateFact)  // Updates a fun fact at a specific index
+    .delete(verifyState(), statesController.deleteStateFact);  // Deletes a fun fact at a specific index
 
+// Route for getting the capital of a specified state
 router.route('/:state/capital')
-    .get(verifyState(), statesController.getCapital) // returns the state and capital
+    .get(verifyState(), statesController.getCapital); // Retrieves the state and its capital
 
+// Route for getting the nickname of a specified state
 router.route('/:state/nickname')
-    .get(verifyState(), statesController.getNickName) // returns the state and nickname
+    .get(verifyState(), statesController.getNickName); // Retrieves the state and its nickname
 
+// Route for getting the population of a specified state
 router.route('/:state/population')
-    .get(verifyState(), statesController.getPop) // returns the state and population
+    .get(verifyState(), statesController.getPop); // Retrieves the state and its population
 
+// Route for getting the admission date of a specified state
 router.route('/:state/admission')
-    .get(verifyState(), statesController.getAdmission) // returns the state and the date the state was admitted 
+    .get(verifyState(), statesController.getAdmission); // Retrieves the state and the date it was admitted
 
 module.exports = router;
