@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Define the schema for state information
 const stateSchema = new Schema({
-    code: {
+    stateCode: {
         type: String,
         required: true,
         unique: true,
