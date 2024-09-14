@@ -1,3 +1,4 @@
+// List of allowed origins for CORS requests
 const allowedOrigins = [
     'https://cyber-mango-harpymimus.glitch.me',
     'https://dazzling-snickerdoodle-777101.netlify.app',
