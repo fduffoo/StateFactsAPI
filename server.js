@@ -1,64 +1,64 @@
 require('dotenv').config();
 const express = require('express');
-const app = express();
 const path = require('path');
 const cors = require('cors');
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+
 const corsOptions = require('./config/corsOptions');
 const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
-const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
-const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
+
+const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Supress warning
+// Suppress Mongoose warning
 mongoose.set('strictQuery', true);
 
 // Connect to MongoDB
-connectDB();
+(async () => {
+    try {
+        await connectDB();
+        console.log('Connected to MongoDB');
+    } catch (err) {
+        console.error('MongoDB connection error:', err);
+        process.exit(1); // Exit process with failure
+    }
+})();
 
-// custom middleware logger
-app.use(logger);
+// Middleware
+app.use(logger); // Custom logger middleware
+app.use(credentials); // Handle credentials before CORS
+app.use(cors(corsOptions)); // CORS settings
+app.use(express.urlencoded({ extended: false })); // Handle urlencoded form data
+app.use(express.json()); // Handle JSON data
+app.use(cookieParser()); // Cookie parser
 
-// Handle options credentials check - before CORS!
-// and fetch cookies credentials requirement
-app.use(credentials);
-
-// Cross Origin Resource Sharing
-app.use(cors(corsOptions));
-
-// built-in middleware to handle urlencoded form data
-app.use(express.urlencoded({ extended: false }));
-
-// built-in middleware for json 
-app.use(express.json());
-
-//middleware for cookies
-app.use(cookieParser());
-
-//serve static files
+// Serve static files
 app.use('/', express.static(path.join(__dirname, '/public')));
 
-// routes
+// Routes
 app.use('/', require('./routes/root'));
-
 app.use('/states', require('./routes/api/states'));
 
+// 404 Error handling for unsupported routes
 app.all('*', (req, res) => {
     res.status(404);
     if (req.accepts('html')) {
         res.sendFile(path.join(__dirname, 'views', '404.html'));
     } else if (req.accepts('json')) {
-        res.json({ "error": "404 Not Found" });
+        res.json({ error: "404 Not Found" });
     } else {
         res.type('txt').send("404 Not Found");
     }
 });
 
+// Custom error handler middleware
 app.use(errorHandler);
 
+// Start server after MongoDB connection is established
 mongoose.connection.once('open', () => {
-    console.log('Connected to MongoDB');
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
