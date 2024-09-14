@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Define the schema for state information
 const stateSchema = new Schema({
-    stateCode: {
+    code: {
         type: String,
         required: true,
         unique: true,
@@ -17,4 +17,3 @@ const stateSchema = new Schema({
 
 // Create and export the State model using the schema
 module.exports = mongoose.model('State', stateSchema);
-
