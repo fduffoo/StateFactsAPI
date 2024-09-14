@@ -1,14 +1,15 @@
 const State = require('../model/State');
 const statesJSONData = require('../model/statesData.json');
 
-// Helper function to find state in JSON data
+// Helper function to find a state in the JSON data based on its code
 const findStateInJSON = (code) => statesJSONData.find(state => state.code === code);
 
+// Get a list of all states, optionally filtered by contiguous or non-contiguous
 const getAllStates = async (req, res) => {
     const { contig } = req.query;
     let statesList = [...statesJSONData];
     
-    // Filter states based on `contig` query parameter
+    // Filter states based on the `contig` query parameter
     if (contig === 'true') {
         statesList = statesList.filter(state => state.code !== 'AK' && state.code !== 'HI');
     } else if (contig === 'false') {
@@ -17,6 +18,7 @@ const getAllStates = async (req, res) => {
 
     try {
         const mongoStates = await State.find();
+        // Merge fun facts from MongoDB with JSON data
         statesList.forEach(state => {
             const stateExists = mongoStates.find(st => st.stateCode === state.code);
             if (stateExists) state.funfacts = [...stateExists.funfacts];
@@ -27,6 +29,7 @@ const getAllStates = async (req, res) => {
     }
 }
 
+// Get a specific state by its code
 const getOneState = async (req, res) => {
     const code = req.code;
     const state = findStateInJSON(code);
@@ -41,6 +44,7 @@ const getOneState = async (req, res) => {
     }
 }
 
+// Get a random fun fact about a state
 const getRandomFact = async (req, res) => {
     const code = req.code;
     const state = findStateInJSON(code);
@@ -58,6 +62,7 @@ const getRandomFact = async (req, res) => {
     }
 }
 
+// Add new fun facts to a state
 const addNewStateFacts = async (req, res) => {
     const code = req.code;
     const { funfacts } = req.body;
@@ -79,6 +84,7 @@ const addNewStateFacts = async (req, res) => {
     }
 }
 
+// Update a specific fun fact for a state
 const updateStateFact = async (req, res) => {
     const code = req.code;
     let { index, funfact } = req.body;
@@ -104,6 +110,7 @@ const updateStateFact = async (req, res) => {
     }
 }
 
+// Delete a specific fun fact for a state
 const deleteStateFact = async (req, res) => {
     const code = req.code;
     let { index } = req.body;
@@ -127,6 +134,7 @@ const deleteStateFact = async (req, res) => {
     }
 }
 
+// Get the capital city of a state
 const getCapital = (req, res) => {
     const code = req.code;
     const state = findStateInJSON(code);
@@ -134,6 +142,7 @@ const getCapital = (req, res) => {
     res.json({ 'state': state.state, 'capital': state.capital_city });
 }
 
+// Get the nickname of a state
 const getNickName = (req, res) => {
     const code = req.code;
     const state = findStateInJSON(code);
@@ -141,6 +150,7 @@ const getNickName = (req, res) => {
     res.json({ 'state': state.state, 'nickname': state.nickname });
 }
 
+// Get the population of a state
 const getPop = (req, res) => {
     const code = req.code;
     const state = findStateInJSON(code);
@@ -148,6 +158,7 @@ const getPop = (req, res) => {
     res.json({ 'state': state.state, 'population': state.population.toLocaleString('en-US') });
 }
 
+// Get the admission date of a state
 const getAdmission = (req, res) => {
     const code = req.code;
     const state = findStateInJSON(code);
@@ -155,7 +166,7 @@ const getAdmission = (req, res) => {
     res.json({ 'state': state.state, 'admitted': state.admission_date });
 }
 
-// New function to get all details of a state
+// Get all details of a state including fun facts
 const getStateDetails = async (req, res) => {
     const code = req.code;
     const state = findStateInJSON(code);
@@ -163,11 +174,7 @@ const getStateDetails = async (req, res) => {
 
     try {
         const savedState = await State.findOne({ stateCode: code }).exec();
-        if (savedState) {
-            state.funfacts = savedState.funfacts;
-        } else {
-            state.funfacts = [];
-        }
+        state.funfacts = savedState ? savedState.funfacts : [];
         res.json({
             state: state.state,
             capital: state.capital_city,
