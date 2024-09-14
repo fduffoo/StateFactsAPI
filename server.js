@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 
 const corsOptions = require('./config/corsOptions');
@@ -18,15 +17,7 @@ const PORT = process.env.PORT || 3000;
 mongoose.set('strictQuery', true);
 
 // Connect to MongoDB
-(async () => {
-    try {
-        await connectDB();
-        console.log('Connected to MongoDB');
-    } catch (err) {
-        console.error('MongoDB connection error:', err);
-        process.exit(1); // Exit process with failure
-    }
-})();
+connectDB();
 
 // Middleware
 app.use(logger); // Custom logger middleware
@@ -59,6 +50,4 @@ app.all('*', (req, res) => {
 app.use(errorHandler);
 
 // Start server after MongoDB connection is established
-mongoose.connection.once('open', () => {
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
