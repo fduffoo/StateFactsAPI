@@ -45,22 +45,35 @@ const getOneState = async (req, res) => {
 
 // Add new fun facts to a state
 const addNewStateFacts = async (req, res) => {
-    const code = req.params.state.toUpperCase();
+    // Extract and uppercase the state code from the request parameters
+    const code = req.params.state ? req.params.state.toUpperCase() : null;
+
+    // Log the state code to ensure it's not null
+    console.log('Received state code:', code);
+
+    // Check if the state code is valid
+    if (!code) return res.status(400).json({ 'message': 'State code is required' });
+
+    // Extract fun facts from the request body
     const { funfacts } = req.body;
     if (!funfacts) return res.status(400).json({ 'message': 'State fun facts value required' });
     if (!Array.isArray(funfacts)) return res.status(400).json({ 'message': 'State fun facts must be an array' });
 
     try {
+        // Try to find the state in the database
         const savedState = await State.findOne({ stateCode: code }).exec();
         if (savedState) {
+            // If state exists, update fun facts
             savedState.funfacts = [...savedState.funfacts, ...funfacts];
             const result = await savedState.save();
             res.json(result);
         } else {
+            // If state does not exist, create a new entry
             const result = await State.create({ stateCode: code, funfacts });
             res.status(201).json(result);
         }
     } catch (err) {
+        // Handle errors
         res.status(500).json({ 'message': 'Error saving state facts', error: err.message });
     }
 };
