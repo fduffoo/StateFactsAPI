@@ -39,3 +39,4 @@ router.route('/:state/details')
     .get(verifyState(), statesController.getStateDetails); // Retrieves detailed information about the specified state
 
 module.exports = router;
+
