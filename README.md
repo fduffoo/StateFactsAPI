@@ -22,25 +22,33 @@ A Node.js REST API providing information about U.S. states, including fun facts,
     npm install
     ```
 
-3. Set up environment variables by creating a `.env` file with:
+3. Set up environment variables by creating a `.env` file with the following content:
     ```plaintext
     DB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/states?retryWrites=true&w=majority
     PORT=3000
     ```
 
+4. Make sure MongoDB is running and accessible from your application.
+
 ## Usage
 
-- **Development mode:** `npm run dev`
-- **Production mode:** `npm start`
+- **Development mode:** Run the server with `nodemon` for automatic restarts:
+    ```bash
+    npm run dev
+    ```
+- **Production mode:** Start the server in production mode:
+    ```bash
+    npm start
+    ```
 
 ## API Endpoints
 
 - **Get All States:** `GET /api/states`
 - **Get a Single State:** `GET /api/states/:code`
 - **Get a Random Fun Fact:** `GET /api/states/:code/funfact`
-- **Add New Fun Facts:** `POST /api/states/:code/funfacts`
-- **Update a Fun Fact:** `PATCH /api/states/:code/funfacts`
-- **Delete a Fun Fact:** `DELETE /api/states/:code/funfacts`
+- **Add New Fun Facts:** `POST /api/states/:code/funfact`
+- **Update a Fun Fact:** `PATCH /api/states/:code/funfact`
+- **Delete a Fun Fact:** `DELETE /api/states/:code/funfact`
 - **Get State Capital:** `GET /api/states/:code/capital`
 - **Get State Nickname:** `GET /api/states/:code/nickname`
 - **Get State Population:** `GET /api/states/:code/population`
@@ -53,4 +61,4 @@ A Node.js REST API providing information about U.S. states, including fun facts,
 - MongoDB
 - Mongoose
 - Nodemon (development)
-- dotenv (environment variables)
+- dotenv (for environment variables)
