@@ -34,4 +34,8 @@ router.route('/:state/population')
 router.route('/:state/admission')
     .get(verifyState(), statesController.getAdmission); // Retrieves the state and the date it was admitted
 
+// Route for getting detailed information about a specified state
+router.route('/:state/details')
+    .get(verifyState(), statesController.getStateDetails); // Retrieves detailed information about the specified state
+
 module.exports = router;
