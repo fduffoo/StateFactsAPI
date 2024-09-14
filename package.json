@@ -1,5 +1,5 @@
 {
-    "name": "Node.js-REST-API",
+    "name": "inf653_final",
     "version": "1.0.0",
     "description": "Node.js REST API for US States data using both Express and MongoDB",
     "main": "server.js",
