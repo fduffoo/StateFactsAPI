@@ -155,6 +155,32 @@ const getAdmission = (req, res) => {
     res.json({ 'state': state.state, 'admitted': state.admission_date });
 }
 
+// New function to get all details of a state
+const getStateDetails = async (req, res) => {
+    const code = req.code;
+    const state = findStateInJSON(code);
+    if (!state) return res.status(404).json({ 'message': 'State not found' });
+
+    try {
+        const savedState = await State.findOne({ stateCode: code }).exec();
+        if (savedState) {
+            state.funfacts = savedState.funfacts;
+        } else {
+            state.funfacts = [];
+        }
+        res.json({
+            state: state.state,
+            capital: state.capital_city,
+            nickname: state.nickname,
+            population: state.population.toLocaleString('en-US'),
+            admission_date: state.admission_date,
+            funfacts: state.funfacts
+        });
+    } catch (err) {
+        res.status(500).json({ 'message': 'Error fetching state details from MongoDB', error: err.message });
+    }
+}
+
 module.exports = {
     getAllStates,
     getOneState,
@@ -165,5 +191,6 @@ module.exports = {
     getCapital,
     getNickName,
     getPop,
-    getAdmission
+    getAdmission,
+    getStateDetails
 }
