@@ -192,6 +192,44 @@ const getStateDetails = (req, res) => {
     res.json(details);
 };
 
+// Get the website of a state
+const getStateWebsite = (req, res) => {
+    const code = req.params.state.toUpperCase();
+    const state = findStateInJSON(code);
+    if (!state) return res.status(404).json({ 'message': 'State not found' });
+
+    const website = state.website;
+    res.json({ 'state': state.state, 'website': website });
+};
+
+// Get the state flag URL
+const getStateFlag = (req, res) => {
+    const code = req.params.state.toUpperCase();
+    const state = findStateInJSON(code);
+    if (!state) return res.status(404).json({ 'message': 'State not found' });
+
+    const flagUrl = state.state_flag_url;
+    res.json({ 'state': state.state, 'flag_url': flagUrl });
+};
+
+// Get social media links of a state
+const getStateSocialMedia = (req, res) => {
+    const code = req.params.state.toUpperCase();
+    const state = findStateInJSON(code);
+    if (!state) return res.status(404).json({ 'message': 'State not found' });
+
+    const twitter = state.twitter_url;
+    const facebook = state.facebook_url;
+    res.json({
+        'state': state.state,
+        'social_media': {
+            'twitter': twitter,
+            'facebook': facebook
+        }
+    });
+};
+
+
 module.exports = {
     getAllStates,
     getOneState,
@@ -203,5 +241,8 @@ module.exports = {
     getNickName,
     getPop,
     getAdmission,
-    getStateDetails
+    getStateDetails,
+    getStateWebsite,    
+    getStateFlag,       
+    getStateSocialMedia  
 };

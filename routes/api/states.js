@@ -38,5 +38,16 @@ router.route('/:state/admission')
 router.route('/:state/details')
     .get(verifyState(), statesController.getStateDetails); // Retrieves detailed information about the specified state
 
-module.exports = router;
+// New route for getting the website of a specified state
+router.route('/:state/website')
+    .get(verifyState(), statesController.getStateWebsite); // Retrieves the state and its official website
 
+// New route for getting the flag URL of a specified state
+router.route('/:state/flag')
+    .get(verifyState(), statesController.getStateFlag); // Retrieves the state and its flag URL
+
+// New route for getting the social media links of a specified state
+router.route('/:state/socialmedia')
+    .get(verifyState(), statesController.getStateSocialMedia); // Retrieves the state's social media links (Twitter, Facebook)
+
+module.exports = router;
