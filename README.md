@@ -35,17 +35,61 @@ A Node.js REST API providing information about U.S. states, including fun facts,
 
 ## API Endpoints
 
-- **Get All States:** `GET /api/states`
-- **Get State Details:** `GET /api/states/:state`
-- **Get a Single State:** `GET /api/states/:state`
-- **Get a Random Fun Fact:** `GET /api/states/:state/funfact`
-- **Add New Fun Facts:** `POST /api/states/:state/funfact`
-- **Update a Fun Fact:** `PATCH /api/states/:state/funfact`
-- **Delete a Fun Fact:** `DELETE /api/states/:state/funfact`
-- **Get State Capital:** `GET /api/states/:state/capital`
-- **Get State Nickname:** `GET /api/states/:state/nickname`
-- **Get State Population:** `GET /api/states/:state/population`
-- **Get State Admission Date:** `GET /api/states/:state/admission`
+### **Get All States:**  
+`GET /api/states`  
+Retrieves a list of all U.S. states.
+
+### **Get State Details:**  
+`GET /api/states/:state/details`  
+Retrieves detailed information about the specified state, including population, admission date, capital, and more.
+
+### **Get a Single State:**  
+`GET /api/states/:state`  
+Retrieves detailed information about a specified state.
+
+### **Get a Random Fun Fact:**  
+`GET /api/states/:state/funfact`  
+Returns a random fun fact for the specified state.
+
+### **Add New Fun Facts:**  
+`POST /api/states/:state/funfact`  
+Adds new fun facts for the specified state.
+
+### **Update a Fun Fact:**  
+`PATCH /api/states/:state/funfact`  
+Updates a fun fact for the specified state at a given index.
+
+### **Delete a Fun Fact:**  
+`DELETE /api/states/:state/funfact`  
+Deletes a fun fact for the specified state.
+
+### **Get State Capital:**  
+`GET /api/states/:state/capital`  
+Returns the capital city of the specified state.
+
+### **Get State Nickname:**  
+`GET /api/states/:state/nickname`  
+Returns the nickname of the specified state.
+
+### **Get State Population:**  
+`GET /api/states/:state/population`  
+Returns the population of the specified state.
+
+### **Get State Admission Date:**  
+`GET /api/states/:state/admission`  
+Returns the date the state was admitted to the union.
+
+### **Get State Website:**  
+`GET /api/states/:state/website`  
+Returns the official website of the specified state.
+
+### **Get State Flag URL:**  
+`GET /api/states/:state/flag`  
+Returns the URL of the state flag image.
+
+### **Get State Social Media:**  
+`GET /api/states/:state/socialmedia`  
+Returns the social media links (Twitter and Facebook) of the specified state.
 
 ## Technologies Used
 
