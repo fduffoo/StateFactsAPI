@@ -244,5 +244,6 @@ module.exports = {
     getStateDetails,
     getStateWebsite,    
     getStateFlag,       
-    getStateSocialMedia  
+    getStateSocialMedia,
+    findStateInJSON  
 };
