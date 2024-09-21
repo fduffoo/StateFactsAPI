@@ -5,7 +5,8 @@
     "main": "server.js",
     "scripts": {
         "start": "node server",
-        "dev": "nodemon server"
+        "dev": "nodemon server",
+        "test": "jest"
     },
     "author": "Fernando Duffoo",
     "license": "ISC",
@@ -26,7 +27,11 @@
     },
     "devDependencies": {
         "jest": "^29.7.0",
+        "node-mocks-http": "^1.16.0",
         "nodemon": "^2.0.12",
         "supertest": "^7.0.0"
+    },
+    "jest": {
+        "testEnvironment": "node"
     }
 }
