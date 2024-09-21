@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server'); // Adjust the path to your server file
+const app = require('../server'); 
 const State = require('../model/State');
 const statesJSONData = require('../model/statesData.json');
 
