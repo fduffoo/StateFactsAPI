@@ -99,5 +99,6 @@ Returns the social media links (Twitter and Facebook) of the specified state.
 - MongoDB
 - Mongoose
 - Jest
+- Supertest
 - Nodemon (development)
 - dotenv (environment variables)

@@ -1,7 +1,7 @@
 const request = require('supertest');
-const app = require('../server'); 
-const State = require('../model/State');
-const statesJSONData = require('../model/statesData.json');
+const app = require('../../server'); 
+const State = require('../../model/State');
+const statesJSONData = require('../../model/statesData.json');
 
 jest.mock('../model/State'); // Mocking the State model
 
