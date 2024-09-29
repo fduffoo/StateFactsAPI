@@ -95,7 +95,9 @@ Returns the social media links (Twitter and Facebook) of the specified state.
 
 - Node.js
 - Express
+- React
 - MongoDB
 - Mongoose
+- Jest
 - Nodemon (development)
 - dotenv (environment variables)
