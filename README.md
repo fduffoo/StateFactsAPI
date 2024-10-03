@@ -102,4 +102,3 @@ Returns the social media links (Twitter and Facebook) of the specified state.
 - Supertest
 - Nodemon (development)
 - dotenv (environment variables)
-
