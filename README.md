@@ -1,6 +1,6 @@
 # US States Facts API
 
-A Node.js REST API providing information about U.S. states, including fun facts, capitals, nicknames, population, and admission dates. Built with Express and MongoDB.
+A Node.js REST API providing information about U.S. states, including fun facts, capitals, nicknames, population, and admission dates. Built with Express, MongoDB, and React.
 
 ## Table of Contents
 
