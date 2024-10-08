@@ -38,8 +38,7 @@ A Node.js REST API providing information about U.S. states, including fun facts,
 ### **Get All States:**  
 `GET /api/states`  
 Retrieves a list of all U.S. states.
-
-![Video Title]("C:\Users\ferna\Videos\Screen Recordings\all states.mp4")
+![Description of Image](./assets/screenshot.png)
 
 ### **Get State Details:**  
 `GET /api/states/:state/details`  
