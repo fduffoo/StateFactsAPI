@@ -13,8 +13,8 @@ A Node.js REST API providing information about U.S. states, including fun facts,
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/fduffoo/Node.js-REST-API.git
-    cd Node.js-REST-API
+    git clone https://github.com/fduffoo/StateFactsAPI.git
+    cd StateFactsAPI
     ```
 
 2. Install dependencies:
