@@ -5,11 +5,11 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 
-const corsOptions = require('./config/corsOptions');
-const { logger } = require('./middleware/logEvents');
-const errorHandler = require('./middleware/errorHandler');
-const credentials = require('./middleware/credentials');
-const connectDB = require('./config/dbConn');
+const corsOptions = require('./backend/config/corsOptions');
+const { logger } = require('./backend/middleware/logEvents');
+const errorHandler = require('./backend/middleware/errorHandler');
+const credentials = require('./backend/middleware/credentials');
+const connectDB = require('./backend/config/dbConn');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,8 +39,8 @@ app.use(cookieParser()); // Cookie parser
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 // Routes
-app.use('/', require('./routes/root'));
-app.use('/states', require('./routes/api/states'));
+app.use('/', require('./backend/routes/root'));
+app.use('/states', require('./backend/routes/api/states'));
 
 // 404 Error handling for unsupported routes
 app.all('*', (req, res) => {
