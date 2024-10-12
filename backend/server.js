@@ -12,7 +12,7 @@ const credentials = require('./middleware/credentials');
 const connectDB = require('./config/dbConn');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Suppress Mongoose warning
 mongoose.set('strictQuery', true);
