@@ -1,5 +1,5 @@
-const State = require('../model/State');
-const statesJSONData = require('../model/statesData.json');
+const State = require('../models/State');
+const statesJSONData = require('../models/statesData.json');
 
 // Helper function to find a state in the JSON data based on its code
 const findStateInJSON = (code) => statesJSONData.find(state => state.code === code.toUpperCase());

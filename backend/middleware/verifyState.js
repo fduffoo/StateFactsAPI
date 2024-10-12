@@ -1,4 +1,4 @@
-const statesJSONData = require('../model/statesData.json');
+const statesJSONData = require('../models/statesData.json');
 
 const verifyState = () => {
     return (req, res, next) => {
