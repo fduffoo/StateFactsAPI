@@ -12,7 +12,7 @@ const credentials = require('./middleware/credentials');
 const connectDB = require('./config/dbConn');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // Suppress Mongoose warning
 mongoose.set('strictQuery', true);
@@ -61,3 +61,6 @@ app.use(errorHandler);
 mongoose.connection.once('open', () => {
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
+
+// Export the app for testing
+module.exports = app;
