@@ -36,3 +36,10 @@ jobs:
 
       - name: Build the application
         run: npm run build
+
+# - name: Deploy to Heroku
+#   env:
+#     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+#   run: |
+#     git remote add heroku https://git.heroku.com/your-heroku-app.git
+#     git push heroku main
